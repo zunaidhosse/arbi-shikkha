@@ -1,20 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Amiri", serif;
+  
   --color-navy-dark: #1A237E;
   --color-navy: #3F51B5;
   --color-navy-light: #E8EAF6;
-  --color-surface: #F0F2F5;
-  --color-offline: #4CAF50;
-  --color-ink: #1C1E21;
-  --color-ink-muted: #606770;
+  --color-surface: #F8FAFC;
+  --color-offline: #10B981;
+  --color-ink: #0F172A;
+  --color-ink-muted: #64748B;
+  
+  --radius-3xl: 2rem;
+  --radius-4xl: 2.5rem;
 }
 
 body {
   @apply antialiased text-ink bg-surface;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+.arabic-font {
+  font-family: var(--font-arabic);
 }
 
 /* Scrollbar styling */
@@ -28,9 +37,17 @@ body {
 
 /* Theme Utilities */
 .card-polish {
-  @apply bg-white border border-slate-200 shadow-[0_1px_3px_rgba(0,0,0,0.05)] rounded-xl;
+  @apply bg-white border border-slate-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_4px_6px_-2px_rgba(0,0,0,0.05)] rounded-2xl;
 }
 
 .header-polish {
-  @apply bg-navy-dark text-white shadow-[0_2px_4px_rgba(0,0,0,0.1)];
+  @apply bg-navy-dark text-white shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)];
+}
+
+.glass-polish {
+  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+}
+
+.section-divider {
+  @apply h-[1px] bg-slate-200/60 my-6;
 }

@@ -7,54 +7,43 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
+    base: './',
     plugins: [
       react(),
       tailwindcss(),
       VitePWA({
         registerType: 'autoUpdate',
+        injectRegister: 'auto',
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
         manifest: {
-          name: 'বাংলা-আরবি শিক্ষা (Saudi Arabian)',
+          name: 'বাংলা-আরবি শিক্ষা',
           short_name: 'আরবি শিক্ষা',
           description: 'সৌদি আরবের আঞ্চলিক আরবি ভাষা শিখুন অফলাইনে',
           theme_color: '#059669',
           background_color: '#ffffff',
           display: 'standalone',
+          scope: './',
+          start_url: './',
           icons: [
             {
-              src: 'pwa-192x192.png',
-              sizes: '192x192',
-              type: 'image/png'
+              src: 'icon.svg',
+              sizes: '192x192 512x512',
+              type: 'image/svg+xml'
             },
             {
-              src: 'pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png'
-            },
-            {
-              src: 'pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'any maskable'
+              src: 'icon.svg',
+              sizes: '192x192 512x512',
+              type: 'image/svg+xml',
+              purpose: 'maskable'
             }
           ]
         },
         workbox: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-          runtimeCaching: [
-            {
-              urlPattern: ({ request }) => request.destination === 'image',
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'images-cache',
-                expiration: {
-                  maxEntries: 50,
-                  maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
-                },
-              },
-            },
-          ],
-        },
+          cleanupOutdatedCaches: true,
+          clientsClaim: true,
+          skipWaiting: true
+        }
       }),
     ],
     define: {

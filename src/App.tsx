@@ -3,12 +3,12 @@ import { Home } from './pages/Home';
 import { Lesson } from './pages/Lesson';
 import { Favorites } from './pages/Favorites';
 import { About } from './pages/About';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Layout>
         <AnimatePresence mode="wait">
           <Routes>
@@ -19,6 +19,6 @@ export default function App() {
           </Routes>
         </AnimatePresence>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

@@ -72,7 +72,7 @@ export function Home() {
         </div>
       </div>
 
-      {/* Quick Actions */}
+      {/* Quick Action */}
       <div className="flex gap-3">
         <button 
           onClick={() => navigate('/quiz')}
@@ -82,15 +82,6 @@ export function Home() {
              <Icons.BrainCircuit size={20} />
           </div>
           <span className="text-xs font-black uppercase tracking-tight text-navy-dark">কুইজ খেলুন</span>
-        </button>
-        <button 
-          onClick={() => navigate('/practice')}
-          className="flex-1 p-4 bg-white border-2 border-slate-100 rounded-2xl flex flex-col items-center gap-2 hover:border-navy-dark hover:bg-slate-50 transition-all group active:scale-95 shadow-sm"
-        >
-          <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-             <Icons.MessageSquareQuote size={20} />
-          </div>
-          <span className="text-xs font-black uppercase tracking-tight text-navy-dark">এআই প্র্যাকটিস</span>
         </button>
       </div>
 

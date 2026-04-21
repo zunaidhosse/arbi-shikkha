@@ -7,7 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: '/arbi-shikkha/',
+    base: mode === 'production' ? '/arbi-shikkha/' : '/',
     plugins: [
       react(),
       tailwindcss(),
@@ -19,8 +19,8 @@ export default defineConfig(({ mode }) => {
           name: 'বাংলা-আরবি শিক্ষা',
           short_name: 'আরবি শিক্ষা',
           description: 'সৌদি আরবের আঞ্চলিক আরবি ভাষা শিখুন অফলাইনে',
-          theme_color: '#059669',
-          background_color: '#ffffff',
+          theme_color: '#1A237E',
+          background_color: '#F8FAFC',
           display: 'standalone',
           scope: '/arbi-shikkha/',
           start_url: '/arbi-shikkha/',
@@ -29,12 +29,6 @@ export default defineConfig(({ mode }) => {
               src: 'icon.svg',
               sizes: '192x192 512x512',
               type: 'image/svg+xml'
-            },
-            {
-              src: 'icon.svg',
-              sizes: '192x192 512x512',
-              type: 'image/svg+xml',
-              purpose: 'maskable'
             }
           ]
         },

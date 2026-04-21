@@ -19,15 +19,7 @@ export function Practice() {
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Initialize Gemini
-  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages]);
-
+  // Send logic
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
@@ -37,6 +29,12 @@ export function Practice() {
     setIsLoading(true);
 
     try {
+      if (!process.env.GEMINI_API_KEY) {
+        throw new Error('API Key missing');
+      }
+      
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      
       // Craft a system prompt based on our vocabulary
       const vocabContext = saudiData.categories.map(cat => 
         `Category: ${cat.title}\nPhrases: ${cat.phrases.map(p => `${p.arabic} - ${p.bangla}`).join(', ')}`

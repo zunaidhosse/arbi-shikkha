@@ -7,14 +7,14 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: './',
+    base: '/arbi-shikkha/',
     plugins: [
       react(),
       tailwindcss(),
       VitePWA({
         registerType: 'autoUpdate',
         injectRegister: 'auto',
-        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg', 'icon.svg'],
         manifest: {
           name: 'বাংলা-আরবি শিক্ষা',
           short_name: 'আরবি শিক্ষা',
@@ -22,8 +22,8 @@ export default defineConfig(({ mode }) => {
           theme_color: '#1A237E',
           background_color: '#F8FAFC',
           display: 'standalone',
-          scope: './',
-          start_url: './',
+          scope: '/arbi-shikkha/',
+          start_url: '/arbi-shikkha/',
           icons: [
             {
               src: 'icon.svg',

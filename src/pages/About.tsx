@@ -1,7 +1,12 @@
-import { motion } from 'motion/react';
-import { Info, ShieldCheck, Download, WifiOff, Globe, Github, PhoneCall, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Info, ShieldCheck, Download, WifiOff, Globe, Github, PhoneCall, ExternalLink, Share2, X } from 'lucide-react';
+import { QRCodeSVG } from 'qrcode.react';
 
 export function About() {
+  const [showQR, setShowQR] = useState(false);
+  const appUrl = "https://zunaidhosse.github.io/arbi-shikkha/";
+
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
@@ -54,24 +59,89 @@ export function About() {
           </div>
         </div>
 
-        <a 
-          href="https://zunaidhosse.github.io/My-contact/" 
-          target="_blank" 
-          rel="noreferrer"
-          className="card-polish p-5 flex gap-4 items-center bg-gradient-to-br from-orange-500 via-orange-600 to-red-600 text-white border-none hover:brightness-110 transition-all active:scale-[0.98] group shadow-xl shadow-orange-100"
-        >
-          <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-md shadow-inner">
-            <PhoneCall size={24} className="animate-bounce" />
-          </div>
-          <div className="flex-1">
-            <h4 className="font-bold text-lg tracking-tight">হেল্প লাইন</h4>
-            <p className="text-[10px] opacity-80 uppercase font-black tracking-widest mt-0.5">কাস্টমার কেয়ার (২৪/৭ সাহায্য)</p>
-          </div>
-          <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-            <ExternalLink size={16} className="opacity-80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </div>
-        </a>
+        <div className="space-y-3">
+          <a 
+            href="https://zunaidhosse.github.io/My-contact/" 
+            target="_blank" 
+            rel="noreferrer"
+            className="card-polish p-5 flex gap-4 items-center bg-gradient-to-br from-orange-500 via-orange-600 to-red-600 text-white border-none hover:brightness-110 transition-all active:scale-[0.98] group shadow-xl shadow-orange-100"
+          >
+            <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-md shadow-inner">
+              <PhoneCall size={24} className="animate-bounce" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-bold text-lg tracking-tight">হেল্প লাইন</h4>
+              <p className="text-[10px] opacity-80 uppercase font-black tracking-widest mt-0.5">কাস্টমার কেয়ার (২৪/৭ সাহায্য)</p>
+            </div>
+            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+              <ExternalLink size={16} className="opacity-80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </a>
+
+          <button 
+            onClick={() => setShowQR(true)}
+            className="w-full card-polish p-5 flex gap-4 items-center bg-white border-2 border-slate-100 hover:border-navy-dark transition-all active:scale-[0.98] group shadow-sm"
+          >
+            <div className="p-3 bg-navy-light text-navy-dark rounded-2xl group-hover:scale-110 transition-transform">
+              <Share2 size={24} />
+            </div>
+            <div className="flex-1 text-left">
+              <h4 className="font-bold text-lg tracking-tight text-navy-dark">শেয়ার করুন</h4>
+              <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mt-0.5">বন্ধু ও পরিবারের সাথে অ্যাপটি শেয়ার করুন</p>
+            </div>
+          </button>
+        </div>
       </div>
+
+      <AnimatePresence>
+        {showQR && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-navy-dark/60 backdrop-blur-sm">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="bg-white rounded-3xl p-8 max-w-xs w-full shadow-2xl relative flex flex-col items-center text-center"
+            >
+              <button 
+                onClick={() => setShowQR(false)}
+                className="absolute top-4 right-4 p-2 text-slate-400 hover:text-navy-dark transition-colors"
+              >
+                <X size={20} />
+              </button>
+              
+              <h3 className="text-xl font-black text-navy-dark mb-2">QR কোড স্ক্যান করুন</h3>
+              <p className="text-xs text-slate-500 mb-6 leading-relaxed">
+                আপনার বন্ধুর ফোন দিয়ে এই কোডটি স্ক্যান করলে সরাসরি অ্যাপটি ওপেন হবে।
+              </p>
+
+              <div className="p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 mb-6">
+                <QRCodeSVG 
+                  value={appUrl} 
+                  size={180}
+                  level="H"
+                  includeMargin={true}
+                />
+              </div>
+
+              <div className="w-full space-y-2">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">লিঙ্ক কপি করুন</p>
+                <div className="bg-slate-100 p-3 rounded-xl flex items-center justify-between gap-3 border border-slate-200">
+                  <span className="text-[10px] font-mono text-slate-600 truncate flex-1">{appUrl}</span>
+                  <button 
+                    onClick={() => {
+                      navigator.clipboard.writeText(appUrl);
+                      alert("লিঙ্ক কপি করা হয়েছে!");
+                    }}
+                    className="p-1.5 bg-white text-navy-dark rounded-lg shadow-sm active:scale-90 transition-transform"
+                  >
+                    <ExternalLink size={14} />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <div className="card-polish p-6 space-y-4 bg-navy-dark text-white border-none">
         <h3 className="font-bold border-b border-navy pb-2">কিভাবে ইন্সটল করবেন?</h3>

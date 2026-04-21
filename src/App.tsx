@@ -6,10 +6,12 @@ import { About } from './pages/About';
 import { Quiz } from './pages/Quiz';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
+import { InstallPWA } from './components/InstallPWA';
 
 export default function App() {
   return (
     <HashRouter>
+      <InstallPWA />
       <Layout>
         <AnimatePresence mode="wait">
           <Routes>

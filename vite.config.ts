@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
         injectRegister: 'auto',
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg', 'icon.svg'],
         manifest: {
-          name: 'বাংলা-আরবি শিক্ষা',
+          name: 'আরবি শিক্ষা Arbi shikkha',
           short_name: 'আরবি শিক্ষা',
           description: 'সৌদি আরবের আঞ্চলিক আরবি ভাষা শিখুন অফলাইনে',
           theme_color: '#1A237E',

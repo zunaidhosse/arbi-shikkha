@@ -20,7 +20,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <header className="header-polish p-4 sticky top-0 z-50">
         <div className="max-w-2xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <h1 className="text-xl font-bold tracking-tight">আরবি শিক্ষা (PWA)</h1>
+            <h1 className="text-xl font-bold tracking-tight">আরবি শিক্ষা Arbi shikkha</h1>
             <span className="bg-offline text-white px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1.5 shadow-sm">
               <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
               অফলাইন

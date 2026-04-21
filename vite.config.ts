@@ -7,7 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: mode === 'production' ? '/arbi-shikkha/' : '/',
+    base: './',
     plugins: [
       react(),
       tailwindcss(),
@@ -22,8 +22,8 @@ export default defineConfig(({ mode }) => {
           theme_color: '#1A237E',
           background_color: '#F8FAFC',
           display: 'standalone',
-          scope: '/arbi-shikkha/',
-          start_url: '/arbi-shikkha/',
+          scope: './',
+          start_url: './',
           icons: [
             {
               src: 'icon.svg',
